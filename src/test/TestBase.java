@@ -1,9 +1,8 @@
 import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
@@ -22,10 +21,9 @@ public class TestBase {
             return;
         }
 
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability(FirefoxDriver.MARIONETTE, true);
-        driver = new FirefoxDriver(caps);
-        System.out.println(((HasCapabilities) driver).getCapabilities());
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("start-maximized");
+        driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, 10);
 
         //implicit wait
@@ -40,7 +38,10 @@ public class TestBase {
 
     @After
     public void stop() {
-        //You shouldn't try to shut down browser after every test
+        //With singleton "@Before" you shouldn't try
+        //to close browser after every test
+        //use shutdown hook instead
+        //it will close browser after all tests
         //driver.quit();
         //driver = null;
     }

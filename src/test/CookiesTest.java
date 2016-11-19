@@ -1,6 +1,5 @@
 import org.junit.Test;
 import org.junit.Assert;
-
 import org.openqa.selenium.By;
 
 public class CookiesTest extends TestBase {
@@ -44,5 +43,4 @@ public class CookiesTest extends TestBase {
         //Assert that after cookies deletion user is not authorized
         Assert.assertEquals(driver.findElement(By.cssSelector("#box-account-login > h3:nth-child(1)")).getText(), "Login");
     }
-
 }
