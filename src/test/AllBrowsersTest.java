@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -53,13 +54,43 @@ public class AllBrowsersTest {
     }
 
     @Test
-    public void loginAsAdmin() {
+    public void loginAsAdminUsingName() {
         driver.get("http://localhost/litecart/admin/login.php");
         driver.findElement(By.name("username")).sendKeys("admin");
         driver.findElement(By.name("password")).sendKeys("admin");
         driver.findElement(By.name("login")).click();
         String success = driver.findElement(By.id("notices")).getText();
         Assert.assertTrue(success.contains("You are now logged in as admin"));
+        driver.get("http://localhost/litecart/admin/logout.php");
+        Assert.assertTrue(driver.getCurrentUrl().equals("http://localhost/litecart/admin/login.php"));
+    }
+
+    @Test
+    public void loginAsAdminUsingCSS() {
+        driver.get("http://localhost/litecart/admin/login.php");
+        driver.findElement(By.cssSelector("[name=username]")).sendKeys("admin");
+        driver.findElement(By.cssSelector("[name=password]")).sendKeys("admin");
+        driver.findElement(By.cssSelector("[name=login]")).click();
+        //we can use [name=login] or [type=submit] with this button
+        //driver.findElement(By.cssSelector("[type=submit]")).click();
+        String success = driver.findElement(By.cssSelector("#notices")).getText();
+        // we can use id "#notices" or tag+class combination "div.success" to find this text
+        //String success = driver.findElement(By.cssSelector("div.success")).getText();
+        Assert.assertTrue(success.contains("You are now logged in as admin"));
+        driver.get("http://localhost/litecart/admin/logout.php");
+        Assert.assertTrue(driver.getCurrentUrl().equals("http://localhost/litecart/admin/login.php"));
+    }
+
+    @Test
+    public void loginAsAdminUsingXpath() {
+        driver.get("http://localhost/litecart/admin/login.php");
+        driver.findElement(By.xpath("//*[@name='username']")).sendKeys("admin");
+        driver.findElement(By.xpath("//*[@name='password']")).sendKeys("admin");
+        driver.findElement(By.xpath("//*[@name='login']")).click();
+        String success = driver.findElement(By.xpath("//*[@id='notices']")).getText();
+        Assert.assertTrue(success.contains("You are now logged in as admin"));
+        driver.get("http://localhost/litecart/admin/logout.php");
+        Assert.assertTrue(driver.getCurrentUrl().equals("http://localhost/litecart/admin/login.php"));
     }
 
     @After
