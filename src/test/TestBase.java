@@ -29,6 +29,7 @@ public class TestBase {
         //implicit wait
         //This waits up to 10 seconds before throwing NoSuchElementException exception
         //or if it finds the element will return it in 0 - 10 seconds.
+        //Should be declared right after driver declaration.
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         //shutdown hook
