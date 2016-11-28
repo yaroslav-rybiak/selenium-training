@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.concurrent.TimeUnit;
-import java.util.List;
 
 public class DuckCheck {
 
@@ -30,18 +29,28 @@ public class DuckCheck {
 
         //find a duck from campaigns and remember its stats
         WebElement duck = driver.findElement(By.cssSelector("#box-campaigns .products .product"));
-        String main_name = duck.findElement(By.cssSelector(".name")).getText();
-        String main_price1 = duck.findElement(By.cssSelector(".regular-price")).getText();
-        String main_price2 = duck.findElement(By.cssSelector(".campaign-price")).getText();
+        String mainName = duck.findElement(By.cssSelector(".name")).getText();
+        String mainRegularPrice = duck.findElement(By.cssSelector(".regular-price")).getText();
+        String mainCampaignPrice = duck.findElement(By.cssSelector(".campaign-price")).getText();
+
+        //also remember styles
+        String mainRegularColor = duck.findElement(By.cssSelector(".regular-price")).getCssValue("font-color");
+        String mainCampaignColor = duck.findElement(By.cssSelector(".campaign-price")).getCssValue("font-color");
 
         //open a page with this duck and compare stats
         duck.findElement(By.cssSelector(".link")).click();
-        String page_name = driver.findElement(By.cssSelector("#box-product .title")).getText();
-        String page_price1 = driver.findElement(By.cssSelector("#box-product .regular-price")).getText();
-        String page_price2 = driver.findElement(By.cssSelector("#box-product .campaign-price")).getText();
-        Assert.assertEquals(main_name, page_name);
-        Assert.assertEquals(main_price1, page_price1);
-        Assert.assertEquals(main_price2, page_price2);
+        String pageName = driver.findElement(By.cssSelector("#box-product .title")).getText();
+        String pageRegularPrice = driver.findElement(By.cssSelector("#box-product .regular-price")).getText();
+        String pageCampaignPrice = driver.findElement(By.cssSelector("#box-product .campaign-price")).getText();
+        Assert.assertEquals(mainName, pageName);
+        Assert.assertEquals(mainRegularPrice, pageRegularPrice);
+        Assert.assertEquals(mainCampaignPrice, pageCampaignPrice);
+
+        //also compare styles
+        String pageRegularColor = driver.findElement(By.cssSelector("#box-product .regular-price")).getCssValue("font-color");
+        String pageCampaignColor = driver.findElement(By.cssSelector("#box-product .campaign-price")).getCssValue("font-color");
+        Assert.assertEquals(mainRegularColor, pageRegularColor);
+        Assert.assertEquals(mainCampaignColor, pageCampaignColor);
     }
 
     @After
