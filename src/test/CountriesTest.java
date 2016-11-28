@@ -54,6 +54,10 @@ public class CountriesTest {
         List<String> copy = countries;
         Collections.sort(countries);
         Assert.assertEquals(countries, copy);
+
+        //logout
+        driver.get("http://localhost/litecart/admin/logout.php");
+        Assert.assertTrue(driver.getCurrentUrl().equals("http://localhost/litecart/admin/login.php"));
     }
 
     @Test
@@ -97,6 +101,10 @@ public class CountriesTest {
             Assert.assertEquals(zones, copy);
             driver.get("http://localhost/litecart/admin/?app=countries&doc=countries");
         }
+
+        //logout
+        driver.get("http://localhost/litecart/admin/logout.php");
+        Assert.assertTrue(driver.getCurrentUrl().equals("http://localhost/litecart/admin/login.php"));
     }
 
     @Test
@@ -139,6 +147,10 @@ public class CountriesTest {
             Assert.assertEquals(zones, copy);
             driver.get("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones");
         }
+
+        //logout
+        driver.get("http://localhost/litecart/admin/logout.php");
+        Assert.assertTrue(driver.getCurrentUrl().equals("http://localhost/litecart/admin/login.php"));
     }
 
     @After
