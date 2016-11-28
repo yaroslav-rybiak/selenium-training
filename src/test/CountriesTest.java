@@ -140,7 +140,6 @@ public class CountriesTest {
             List<String> zones = new ArrayList<>();
             for (WebElement zone : zoneElements) {
                 zones.add(zone.getAttribute("text"));
-                System.out.println(zone.getAttribute("text"));
             }
             List<String> copy = zones;
             Collections.sort(zones);
