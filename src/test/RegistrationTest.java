@@ -29,14 +29,12 @@ public class RegistrationTest {
         String email = randomEmail();
         String password = randomString();
 
-        //open main page of Duck Store
+        //open main page of Duck Store and click registration link
         driver.get("http://localhost/litecart");
-
-        //click registration link
         driver.findElement(By.linkText("New customers click here")).click();
         Assert.assertTrue(driver.getCurrentUrl().equals("http://localhost/litecart/en/create_account"));
 
-        //fill all fields and register new user
+        //perform registration
         driver.findElement(By.cssSelector("[name=firstname]")).sendKeys(randomString());
         driver.findElement(By.cssSelector("[name=lastname]")).sendKeys(randomString());
         driver.findElement(By.cssSelector("[name=address1]")).sendKeys(randomString());
