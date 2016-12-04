@@ -43,7 +43,7 @@ public class ShoppingCartTest {
             //open main page
             driver.get("http://localhost/litecart/en/");
 
-            //click a duck from "Latest Products section"
+            //click a duck from "Latest Products" section
             driver.findElement(By.cssSelector(ducks.get(i))).click();
 
             //find cart and assert that it has a right quantity of ducks
