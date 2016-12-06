@@ -1,19 +1,15 @@
-import jdk.internal.org.objectweb.asm.Handle;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.List;
-import java.util.ArrayList;
 
 public class WindowTest {
 
@@ -51,7 +47,7 @@ public class WindowTest {
         //open and close every link
         for (WebElement link : externalLinks) {
             link.click();
-            
+
             Set<String> windowsSet = driver.getWindowHandles();
             for (String window : windowsSet) {
                 if (!window.equals(parentWindow)) {
