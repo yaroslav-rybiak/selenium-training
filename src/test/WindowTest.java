@@ -48,8 +48,10 @@ public class WindowTest {
         //create a list of all external links
         List<WebElement> externalLinks = driver.findElements(By.xpath("//i[contains(@class, 'fa-external-link')]/parent::a"));
 
+        //open and close every link
         for (WebElement link : externalLinks) {
             link.click();
+            
             Set<String> windowsSet = driver.getWindowHandles();
             for (String window : windowsSet) {
                 if (!window.equals(parentWindow)) {
@@ -58,6 +60,7 @@ public class WindowTest {
                     driver.close();
                 }
             }
+
             driver.switchTo().window(parentWindow);
             System.out.println("Returned to parent tab: " + driver.getCurrentUrl());
         }
