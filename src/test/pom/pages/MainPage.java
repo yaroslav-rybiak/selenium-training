@@ -33,4 +33,16 @@ public class MainPage extends Page {
 
     @FindBy(linkText="Logout")
     public WebElement logoutLink;
+
+    @FindBy(css="#box-latest-products .products .product:nth-child(1)")
+    public WebElement FirstDuck;
+
+    @FindBy(css="#box-latest-products .products .product:nth-child(2)")
+    public WebElement SecondDuck;
+
+    @FindBy(css="#box-latest-products .products .product:nth-child(3)")
+    public WebElement ThirdDuck;
+
+    @FindBy(css="span[class=quantity]")
+    public WebElement quantity;
 }
